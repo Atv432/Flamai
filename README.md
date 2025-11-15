@@ -1,58 +1,58 @@
-Collaborative Canvas — Real-Time Drawing App
+Here is a **clean, professional, production-ready README.md** tailored exactly for your collaborative canvas project, including setup, features, deployment, and architecture.
 
-A real-time, multi-user collaborative drawing application built with HTML5 Canvas, Vanilla JavaScript, Node.js, and Socket.IO.
+---
+
+# **Collaborative Canvas — Real-Time Drawing App**
+
+A real-time, multi-user collaborative drawing application built with **HTML5 Canvas**, **Vanilla JavaScript**, **Node.js**, and **Socket.IO**.
 Features include live drawing sync, undo/redo, user-specific clearing, color selection, brush tools, remote cursors, and room support.
 
 This repository contains:
 
+```
 client/   → Frontend (HTML, CSS, JavaScript)
 server/   → Backend (Node.js + Socket.IO)
+```
 
+Fully deployable on **Render**, **Railway**, **DigitalOcean**, **Heroku**, etc.
 
-Fully deployable on Render, Railway, DigitalOcean, Heroku, etc.
+---
 
-🚀 Features
+## 🚀 Features
 
-✏️ Real-time drawing between any number of connected clients
+* ✏️ **Real-time drawing** between any number of connected clients
+* 🖱️ **Remote cursor sharing**
+* 🎨 **Brush & eraser tools**
+* 🌈 **Color picker & brush size control**
+* ↩️ **Undo & redo** (per-user stroke history)
+* 🧹 **Clear only your own strokes** (does NOT delete others' drawings)
+* 💾 **Snapshot/restore support**
+* 🏠 **Multiple rooms** (optional)
+* ⚡ Ultra-low latency using WebSockets
 
-🖱️ Remote cursor sharing
+---
 
-🎨 Brush & eraser tools
+# 🛠️ Tech Stack
 
-🌈 Color picker & brush size control
+### **Frontend**
 
-↩️ Undo & redo (per-user stroke history)
+* HTML5 Canvas API
+* Vanilla JavaScript
+* Socket.IO client
+* CSS
 
-🧹 Clear only your own strokes (does NOT delete others' drawings)
+### **Backend**
 
-💾 Snapshot/restore support
+* Node.js
+* Express.js
+* Socket.IO server
+* In-memory operation history
 
-🏠 Multiple rooms (optional)
+---
 
-⚡ Ultra-low latency using WebSockets
+# 📂 Project Structure
 
-🛠️ Tech Stack
-Frontend
-
-HTML5 Canvas API
-
-Vanilla JavaScript
-
-Socket.IO client
-
-CSS
-
-Backend
-
-Node.js
-
-Express.js
-
-Socket.IO server
-
-In-memory operation history
-
-📂 Project Structure
+```
 collaborative-canvas/
 │
 ├── client/
@@ -67,157 +67,190 @@ collaborative-canvas/
     ├── drawing-state.js
     ├── rooms.js
     └── package.json
+```
 
-⚙️ Local Development Setup
-1. Clone the Repository
+---
+
+# ⚙️ Local Development Setup
+
+### **1. Clone the Repository**
+
+```bash
 git clone https://github.com/yourusername/repo-name.git
 cd collaborative-canvas
+```
 
-Backend Setup
+---
 
-Located in the server/ folder.
+## **Backend Setup**
 
-2. Install backend dependencies
+Located in the `server/` folder.
+
+### **2. Install backend dependencies**
+
+```bash
 cd server
 npm install
+```
 
-3. Start the backend
+### **3. Start the backend**
+
+```bash
 npm start
-
+```
 
 Backend runs on:
 
+```
 http://localhost:3000
+```
 
-Frontend Setup
+---
 
-The frontend is static and served from the client/ directory.
+## **Frontend Setup**
 
-4. Open frontend
+The frontend is static and served from the `client/` directory.
+
+### **4. Open frontend**
 
 You can serve it locally using Live Server OR any static file host:
 
 Example using VSCode Live Server:
 
-Right click client/index.html
+* Right click **client/index.html**
+* Click **“Open with Live Server”**
 
-Click “Open with Live Server”
+---
 
-🌐 Deployment Guide (Render)
+# 🌐 Deployment Guide (Render)
 
 Render is used for hosting both frontend and backend.
 
-Backend Deployment (Web Service)
+---
 
-Go to https://render.com
+## **Backend Deployment (Web Service)**
 
-Click New → Web Service
+1. Go to [https://render.com](https://render.com)
+2. Click **New → Web Service**
+3. Connect GitHub repo
+4. Set:
 
-Connect GitHub repo
+| Setting        | Value         |
+| -------------- | ------------- |
+| Root Directory | `server`      |
+| Build Command  | `npm install` |
+| Start Command  | `npm start`   |
+| Runtime        | Node          |
 
-Set:
-
-Setting	Value
-Root Directory	server
-Build Command	npm install
-Start Command	npm start
-Runtime	Node
-
-Deploy
+5. Deploy
 
 Backend URL example:
 
-https://canvas-backend.onrender.com
+```
+https://flamai.onrender.com/
+```
 
-Frontend Deployment (Static Site)
+---
 
-New → Static Site
+## **Frontend Deployment (Static Site)**
 
-Connect repo
+1. New → Static Site
+2. Connect repo
+3. Set:
 
-Set:
+| Setting           | Value     |
+| ----------------- | --------- |
+| Root Directory    | `client`  |
+| Publish Directory | `client`  |
+| Build Command     | *(empty)* |
 
-Setting	Value
-Root Directory	client
-Publish Directory	client
-Build Command	(empty)
-
-Deploy
+4. Deploy
 
 Frontend URL example:
 
+```
 https://canvas-frontend.onrender.com
+```
 
-Update Frontend to Use Backend URL
+---
 
-In client/websocket.js, replace:
+## **Update Frontend to Use Backend URL**
 
+In `client/websocket.js`, replace:
+
+```js
 const socket = io();
-
+```
 
 with:
 
+```js
 const socket = io("https://<YOUR_BACKEND>.onrender.com");
+```
 
-🧠 Architecture Overview
-Client Responsibilities
+---
 
-Draw lines immediately for responsiveness
+# 🧠 Architecture Overview
 
-Emit drawing operations to server
+### **Client Responsibilities**
 
-Store local operations (brush strokes)
+* Draw lines immediately for responsiveness
+* Emit drawing operations to server
+* Store local operations (brush strokes)
+* Redraw canvas based on operation history
+* Handle undo/redo
+* Render remote user cursors
 
-Redraw canvas based on operation history
+### **Server Responsibilities**
 
-Handle undo/redo
+* Maintain global list of all drawing operations
+* Tag each stroke with userId + opId
+* Broadcast new strokes to all clients
+* Handle per-user undo/redo
+* Handle per-user clear
+* Serve latest snapshots
 
-Render remote user cursors
+---
 
-Server Responsibilities
-
-Maintain global list of all drawing operations
-
-Tag each stroke with userId + opId
-
-Broadcast new strokes to all clients
-
-Handle per-user undo/redo
-
-Handle per-user clear
-
-Serve latest snapshots
-
-🧪 Testing
+# 🧪 Testing
 
 Open 2–3 browser tabs pointing to the frontend URL.
 Drawing in any tab should instantly sync across all others.
 
-🐛 Troubleshooting
-❌ No drawing appears on other clients
+---
 
-Check console for WebSocket errors
+# 🐛 Troubleshooting
 
-Confirm frontend uses correct backend URL
+### **❌ No drawing appears on other clients**
 
-Ensure backend service is running
+* Check console for WebSocket errors
+* Confirm frontend uses correct backend URL
+* Ensure backend service is running
 
-❌ 404 for socket.io
+### **❌ 404 for socket.io**
 
 Backend must be accessible at:
 
-https://your-backend.onrender.com/socket.io/
+```
+https://flamai.onrender.com/
+```
 
-❌ Clear button clears entire canvas
+### **❌ Clear button clears entire canvas**
 
 Backend must emit unique opIds per user
 Frontend must only deactivate matching ops
 
-🤝 Contributing
+---
+
+# 🤝 Contributing
 
 Pull requests are welcome!
 Please open an issue to discuss major changes.
 
-📜 License
+---
 
-This project is open-source under the MIT License.
+# 📜 License
+
+This project is open-source under the **MIT License**.
+
+---
