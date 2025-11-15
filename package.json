@@ -7,7 +7,19 @@
     "start": "node server/server.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "socket.io": "^4.7.2"
-  }
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Atv432/Flamai.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Atv432/Flamai/issues"
+  },
+  "homepage": "https://github.com/Atv432/Flamai#readme"
 }
