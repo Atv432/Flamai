@@ -245,8 +245,3 @@ Please open an issue to discuss major changes.
 
 ---
 
-# 📜 License
-
-This project is open-source under the **MIT License**.
-
----
