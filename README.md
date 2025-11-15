@@ -1,7 +1,3 @@
-Here is a **clean, professional, production-ready README.md** tailored exactly for your collaborative canvas project, including setup, features, deployment, and architecture.
-
----
-
 # **Collaborative Canvas — Real-Time Drawing App**
 
 A real-time, multi-user collaborative drawing application built with **HTML5 Canvas**, **Vanilla JavaScript**, **Node.js**, and **Socket.IO**.
