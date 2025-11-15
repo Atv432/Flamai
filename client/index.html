@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Collaborative Canvas</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="header">
+    <h1>Collaborative Canvas</h1>
+    <div id="status" class="status disconnected">Disconnected</div>
+  </header>
+  <div class="toolbar">
+    <div class="tools">
+      <button id="brushBtn" class="tool active">Brush</button>
+      <button id="eraserBtn" class="tool">Eraser</button>
+    </div>
+    <div class="colors" id="colors"></div>
+    <label>Size <input id="size" type="range" min="1" max="30" value="3"></label>
+    <div class="actions">
+      <button id="undo">Undo</button>
+      <button id="redo">Redo</button>
+      <button id="clear">Clear</button>
+      <button id="download">Download</button>
+    </div>
+    <div class="clients" id="clients"></div>
+  </div>
+  <main class="main">
+    <div class="canvas-wrap">
+      <canvas id="canvas" width="1000" height="600"></canvas>
+      <div id="cursors"></div>
+    </div>
+  </main>
+  <footer class="footer">Demo server-backed collaborative canvas</footer>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="canvas.js"></script>
+  <script src="websocket.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
